@@ -1,6 +1,8 @@
 package functions;
 
-public interface TabulatedFunction extends Function
+import java.io.Serializable;
+
+public interface TabulatedFunction extends Function, Serializable, Cloneable
 {
 	int getPointsCount();
 	FunctionPoint getPoint(int index);
@@ -11,5 +13,6 @@ public interface TabulatedFunction extends Function
 	void setPointY(int index, double y);
 	void deletePoint(int index);
 	void addPoint(FunctionPoint point) throws InappropriateFunctionPointException;
+	Object clone() throws CloneNotSupportedException;
 
 }

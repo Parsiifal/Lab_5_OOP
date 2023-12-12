@@ -84,6 +84,87 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Serializa
 
 	}
 
+	@Override
+	public String toString()
+	{
+		System.out.print("{ ");
+		current = head.next;
+		int index = 0;
+		while(current != head)
+		{
+			System.out.print(current.data.toString());
+			if(index < lengthList - 1)
+			{
+				System.out.print(", ");
+			}
+			index++;
+			current = current.next;
+		}
+		System.out.print(" }");
+		return "";
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o == null || !(o instanceof TabulatedFunction)) return false;
+
+		if (o instanceof LinkedListTabulatedFunction)
+		{
+			LinkedListTabulatedFunction obj = (LinkedListTabulatedFunction) o;
+			if(obj.lengthList != this.lengthList) return false;
+
+			this.current = this.head.next;
+			obj.current = obj.head.next;
+
+			while (this.current != this.head)
+			{
+				if(this.current.data.GetX() != obj.current.data.GetX() || this.current.data.GetY() != obj.current.data.GetY()) return false;
+				this.current = this.current.next;
+				obj.current = obj.current.next;
+			}
+		}
+		else
+		{
+			TabulatedFunction obj = (TabulatedFunction) o;
+			if(obj.getPointsCount() != this.lengthList) return false;
+
+			for(int i = 0; i < this.lengthList; i++)
+			{
+				if(!(this.getPoint(i).equals(obj.getPoint(i)))) return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		current = head.next;
+		int code = 0;
+		while (current != head)
+		{
+			code += current.data.hashCode();
+			current = current.next;
+		}
+		return code + lengthList;
+	}
+
+	@Override
+	public Object clone()
+	{
+		FunctionPoint[] points2 = new FunctionPoint[lengthList];
+		current = head.next;
+
+		for(int i = 0; i < lengthList; i++)
+		{
+			points2[i] = (FunctionPoint) current.data.clone();
+			current = current.next;
+		}
+
+		return new LinkedListTabulatedFunction(points2);
+	}
+
 	private void checkIndex(int index)
 	{
 		if (index < 0 || index >= lengthList)

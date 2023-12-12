@@ -52,30 +52,23 @@ public class FunctionPoint
     @Override
     public boolean equals(Object o)
     {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
-        FunctionPoint obj = (FunctionPoint) o;
-        return Double.compare(obj.x, x) == 0 && Double.compare(obj.y, y) == 0;
+        if(o == null || !(o instanceof FunctionPoint)) return false;
+        return Double.compare(this.x, x) == 0 && Double.compare(this.y, y) == 0;
     }
 
     @Override
     public int hashCode()
     {
-        int result = Double.hashCode(x);
-        result = 31 * result + Double.hashCode(y);
-        return result;
+        long bits = Double.doubleToLongBits(x);
+        int code = (int)(bits ^ (bits >>> 32));
+        bits = Double.doubleToLongBits(y);
+        code = 31 * code + (int)(bits ^ (bits >>> 32));
+        return code;
     }
 
     @Override
     public Object clone()
     {
-        try
-        {
-            return super.clone();
-        }
-        catch (CloneNotSupportedException e)
-        {
-            throw new RuntimeException(e);
-        }
+        return new FunctionPoint(this);
     }
 }

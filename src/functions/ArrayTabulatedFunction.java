@@ -115,27 +115,67 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable
 		System.out.print("{ ");
 		for(int i = 0; i < this.numberofpoints; i++)
 		{
-			System.out.print("(" + this.getPointX(i) + "; " + this.getPointY(i) + ")");
+			System.out.print(this.points[i].toString());
+
 			if(i < this.numberofpoints - 1)
 			{
 				System.out.print(", ");
 			}
 		}
-		return " }";
+		System.out.print(" }");
+		return "";
 	}
 
 	@Override
 	public boolean equals(Object o)
 	{
-		if(this == o) return true;
-		if(!(o instanceof TabulatedFunction)) return false;
-		TabulatedFunction obj = (TabulatedFunction) o;
-		if(this.numberofpoints != obj.getPointsCount()) return false;
+		if(o == null || !(o instanceof TabulatedFunction)) return false;
+
+		if(o instanceof ArrayTabulatedFunction)
+		{
+			ArrayTabulatedFunction obj = (ArrayTabulatedFunction) o;
+			if(this.numberofpoints != obj.numberofpoints) return false;
+
+			for(int i = 0; i < this.numberofpoints; i++)
+			{
+				if(this.points[i].GetX() != obj.points[i].GetX() || this.points[i].GetY() != obj.points[i].GetY()) return false;
+			}
+		}
+		else
+		{
+			TabulatedFunction obj = (TabulatedFunction) o;
+			if(this.numberofpoints != obj.getPointsCount()) return false;
+
+			for(int i = 0; i < this.numberofpoints; i++)
+			{
+				if(this.getPointX(i) != obj.getPointX(i) || this.getPointY(i) != obj.getPointY(i)) return false;
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		int code = 0;
 		for(int i = 0; i < this.numberofpoints; i++)
 		{
-			if(this.getPointX(i) != obj.getPointX(i) || this.getPointY(i) != obj.getPointY(i)) return false;
+			code += this.points[i].hashCode();
 		}
-		return true;
+		return code + numberofpoints;
+	}
+
+	@Override
+	public Object clone()
+	{
+		FunctionPoint[] points2 = new FunctionPoint[numberofpoints];
+
+		for(int i = 0; i < numberofpoints; i++)
+		{
+			points2[i] = (FunctionPoint) this.points[i].clone();
+		}
+		return new ArrayTabulatedFunction(points2);
 	}
 
 	public double getLeftDomainBorder()
