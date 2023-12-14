@@ -127,11 +127,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Serializa
 		else
 		{
 			TabulatedFunction obj = (TabulatedFunction) o;
-			if(obj.getPointsCount() != this.lengthList) return false;
+			if(this.lengthList != obj.getPointsCount()) return false;
 
 			for(int i = 0; i < this.lengthList; i++)
 			{
-				if(!(this.getPoint(i).equals(obj.getPoint(i)))) return false;
+				if(this.getPointX(i) != obj.getPointX(i) || this.getPointY(i) != obj.getPointY(i)) return false;
 			}
 		}
 		return true;
