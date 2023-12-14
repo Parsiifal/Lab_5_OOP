@@ -59,10 +59,8 @@ public class FunctionPoint
     @Override
     public int hashCode()
     {
-        long bits = Double.doubleToLongBits(x);
-        int code = (int)(bits ^ (bits >>> 32));
-        bits = Double.doubleToLongBits(y);
-        code = 31 * code + (int)(bits ^ (bits >>> 32));
+        int code = (int)(Double.doubleToLongBits(x) ^ (Double.doubleToLongBits(x) >>> 32));
+        code = 31 * code + (int)(Double.doubleToLongBits(y) ^ (Double.doubleToLongBits(y) >>> 32));
         return code;
     }
 

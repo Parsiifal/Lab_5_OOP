@@ -8,8 +8,8 @@ public class Main
 {
 	public static void main(String[] args) throws InappropriateFunctionPointException
 	{
-		FunctionPoint a = new FunctionPoint(2, 6);
-		FunctionPoint b = new FunctionPoint(2,6);
+		FunctionPoint a = new FunctionPoint(8, 5);
+		FunctionPoint b = new FunctionPoint(8,5);
 
 		double[] x = {1,2,4};
 		double[] y = {1,6,23};
@@ -32,12 +32,8 @@ public class Main
 
 		LinkedListTabulatedFunction link3 = (LinkedListTabulatedFunction) link2.clone();
 
-		link3.toString();
-		System.out.println();
-		link2 = new LinkedListTabulatedFunction(points);
-		link2.toString();
-		System.out.println();
-		link3.toString();
+		System.out.println(a.hashCode());
+		System.out.println(b.hashCode());
 	}
 
 	public static void printFunctionValues(TabulatedFunction function) // функция для вывода значений функции
