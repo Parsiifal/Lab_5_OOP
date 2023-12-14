@@ -142,9 +142,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Serializa
 	{
 		current = head.next;
 		int code = 0;
+		int index = 0;
 		while (current != head)
 		{
-			code += current.data.hashCode();
+			code += index + current.data.hashCode();
+			index++;
 			current = current.next;
 		}
 		return code + lengthList;

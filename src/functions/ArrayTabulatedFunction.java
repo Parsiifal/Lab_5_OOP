@@ -161,7 +161,7 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable
 		int code = 0;
 		for(int i = 0; i < this.numberofpoints; i++)
 		{
-			code += this.points[i].hashCode();
+			code += i + this.points[i].hashCode();
 		}
 		return code + numberofpoints;
 	}
