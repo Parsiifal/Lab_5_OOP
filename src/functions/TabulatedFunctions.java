@@ -23,11 +23,6 @@ public class TabulatedFunctions
 			}
 		}
 
-//		if (function.getLeftDomainBorder() < leftX || function.getRightDomainBorder() > rightX)
-//		{
-//			throw new IllegalArgumentException("Область определения функции находится за границами для табулирования");
-//		}
-
 		return new ArrayTabulatedFunction(leftX, rightX, pointsCount, function);
 	}
 

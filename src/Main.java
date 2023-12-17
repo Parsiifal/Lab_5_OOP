@@ -16,15 +16,15 @@ public class Main
 
 		ArrayTabulatedFunction arr = new ArrayTabulatedFunction(x,y);
 
-		FunctionPoint[] points = {new FunctionPoint(1, 4),
-				new FunctionPoint(8,16),
-				new FunctionPoint(9, 34)};
+		FunctionPoint[] points = {new FunctionPoint(3, 4),
+									new FunctionPoint(8,16),
+									new FunctionPoint(9, 34)};
 
 		FunctionPoint[] points2 = {new FunctionPoint(1, 4),
-				new FunctionPoint(2,10),
-				new FunctionPoint(6, 20)};
+									new FunctionPoint(8,16),
+									new FunctionPoint(9, 34)};
 
-		//ArrayTabulatedFunction arr2 = (ArrayTabulatedFunction) arr.clone();
+		ArrayTabulatedFunction arr2 = new ArrayTabulatedFunction(points);
 
 		LinkedListTabulatedFunction link = new LinkedListTabulatedFunction(points);
 		LinkedListTabulatedFunction link2 = new LinkedListTabulatedFunction(points2);
@@ -32,12 +32,8 @@ public class Main
 
 		LinkedListTabulatedFunction link3 = (LinkedListTabulatedFunction) link2.clone();
 
-		link3.toString();
-		System.out.println();
-		link2 = new LinkedListTabulatedFunction(points);
-		link2.toString();
-		System.out.println();
-		link3.toString();
+		System.out.println(link2.equals(arr2));
+
 	}
 
 	public static void printFunctionValues(TabulatedFunction function) // функция для вывода значений функции
